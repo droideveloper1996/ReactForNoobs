@@ -3,9 +3,23 @@ import Button from "./components/button";
 import { load } from "@cashfreepayments/cashfree-js";
 import { useEffect, useState } from "react";
 import OfferComponent from "./components/offer";
+import CounterComponent, { FlowCheck } from "./components/counter";
+import LoginForm from "./components/Login";
+import { BrowserRouter,Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import AddToCartPage from "./pages/AddToCart";
 const cashfree = await load({
   mode: "sandbox", //or production
 });
+
+
+
+
+
+
+
+
 
 const products = [
   {
@@ -55,20 +69,47 @@ const products = [
 // useEffect()  --> Component Lifecycle
 
 function App() {
+
+
+  const handleFlowCheck = () => {
+    console.log('Called Handle Flow Check')
+  }
+
   return (
-    <div className="relative  w-full h-screen">
-      {/* {products.map((product) => {
-        return (
-          <ProductDetailComponent
-            productName={product.productName}
-            productPrice={product.productPrice}
-            productDesc={product.productDesc}
-            productImage={product.productImage}
-          />
-        );
-      })} */}
-      <TestEffect/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cart" element={<AddToCartPage />} />
+      </Routes>
+    </BrowserRouter>
+
+    // <div className="relative  w-full h-screen">
+
+    // {/* <LoginForm/> */}
+
+    //       {/* <FlowCheck handleClick={ handleFlowCheck} /> */}
+
+    //       {/* <button onClick={ } >Clicked To check Flow</button> */}
+
+    //       {/* {products.map((product) => {
+    //         return (
+    //           <ProductDetailComponent
+    //             productName={product.productName}
+    //             productPrice={product.productPrice}
+    //             productDesc={product.productDesc}
+    //             productImage={product.productImage}
+    //           />
+    //         );
+    //       })} */}
+    //       {/* <TestEffect/> */}
+
+    //       {/* <CounterComponent/>
+    //       <CounterComponent/>
+    //       <CounterComponent/>
+    //       <CounterComponent/> */}
+
+    //     // </div>
   );
 }
 
@@ -143,7 +184,7 @@ const TestEffect = () => {
   useEffect(() => {
     console.log("Mai to chalunga hi chahe jo ho jae");
   });
-  
+
 
    useEffect(() => {
      console.log("Bhai mai to ek bar chalunga");
